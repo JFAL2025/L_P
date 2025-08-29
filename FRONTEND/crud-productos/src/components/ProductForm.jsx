@@ -1,5 +1,5 @@
+import { createProduct, getProduct, updateProduct } from '../api/products'; 
 import { useState, useEffect } from 'react';
-import { createProduct, getProduct, updateProduct } from '../api/Products';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -83,4 +83,3 @@ export default function ProductForm() {
       </form>
     </div>
   );
-}
