@@ -8,22 +8,29 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Cargar variables de entorno
+# Cargar variables de entorno desde el archivo .env (para desarrollo local)
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY: Secret key from environment variable
-SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-dev-key-only-for-development')
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = 'django-insecure-...'  # Comenta o elimina esta línea
+SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key-for-dev-only')
 
-# SECURITY: Debug mode from environment variable
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True  # Comenta o elimina esta línea
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# Allowed hosts from environment variable
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.onrender.com,localhost,127.0.0.1').split(',')
+# ALLOWED_HOSTS = []  # Comenta o elimina esta línea
+allowed_hosts = os.environ.get('ALLOWED_HOSTS', '')
+if allowed_hosts:
+    ALLOWED_HOSTS = allowed_hosts.split(',')
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -66,7 +73,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'inventario.wsgi.application'
 
+
 # Database
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -74,7 +84,10 @@ DATABASES = {
     }
 }
 
+
 # Password validation
+# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -90,23 +103,33 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Internationalization
+# https://docs.djangoproject.com/en/5.2/topics/i18n/
+
 LANGUAGE_CODE = 'en-us'
+
 TIME_ZONE = 'UTC'
+
 USE_I18N = True
+
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
+
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS settings
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://tu-frontend.onrender.com"  # Cambia esto por tu URL de frontend
 ]
 
 # Security settings for production
