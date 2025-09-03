@@ -1,5 +1,5 @@
-import { getProducts, deleteProduct } from "../api/products" 
 import { useEffect, useState } from "react"
+import { deleteProduct, getProducts } from "../api/products"
 import {useNavigate} from 'react-router-dom'
 
 
@@ -51,3 +51,4 @@ export default function ProductList(){
             </div>
         </div>
     )
+}

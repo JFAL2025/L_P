@@ -1,6 +1,6 @@
 import { BrowserRouter,Route,Routes } from "react-router"
 import ProductList from "./components/ProductList"
-import ProductForm from "./components/ProductForm"
+import ProductForm from "d:/L_P/FRONTEND/crud-productos/src/components/ProductForm"
 import Header from "./components/Headers"
 import {Toaster} from 'react-hot-toast' 
 
