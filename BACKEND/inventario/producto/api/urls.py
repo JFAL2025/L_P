@@ -3,4 +3,4 @@ from producto.api.views import ProductoViewSet
 
 router = DefaultRouter()
 router.register('producto', ProductoViewSet, basename='producto')
-urlpatterns = router.urls
+urlpatterns = router.urls 
